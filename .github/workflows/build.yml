@@ -1,0 +1,16 @@
+name: Simple CI job
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message to console
+        run: |
+          echo "Hello, world!"
+          echo "Hello, everyone!"
