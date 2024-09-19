@@ -1,4 +1,4 @@
-name: Hard CI job
+name: CI for getting current datetime
 
 on:
   push:
