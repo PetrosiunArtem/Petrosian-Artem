@@ -1,10 +1,11 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.example.animals.*;
 
-class Zoo {
-  ArrayList<Animal> animals;
+import java.util.ArrayList;
+
+public class Zoo {
+  private ArrayList<Animal> animals;
 
   public Zoo() {
     this.animals = new ArrayList<Animal>();
@@ -15,19 +16,16 @@ class Zoo {
       new Horse("Платва"),
       new Tiger("Шрам"),
     };
-    this.animals.addAll(Arrays.asList(animals));
+    for (Animal animal : animals) {
+      this.animals.add(animal);
+    }
+  }
+
+  public ArrayList<Animal> getAnimals() {
+    return this.animals;
   }
 
   public void addAnimal(Animal animal) {
     this.animals.add(animal);
   }
-
-  public void check() {
-    for (Animal animal : this.animals) {
-      animal.hello();
-      animal.action();
-      System.out.println('\n');
-    }
-  }
 }
-

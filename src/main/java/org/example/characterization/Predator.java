@@ -1,7 +1,6 @@
-package org.example;
+package org.example.characterization;
 
-interface Predator {
+public interface Predator {
   final String eat = "Мясо";
   final String diet = "Хищник";
 }
-
