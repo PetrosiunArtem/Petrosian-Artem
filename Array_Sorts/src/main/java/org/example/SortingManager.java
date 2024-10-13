@@ -29,8 +29,4 @@ public class SortingManager {
     }
     throw new NoSuchElementException("SortingStrategy with your sortingType does not exist");
   }
-
-  public List<Integer> sort(List<Integer> list) {
-    return sort(list, SortingType.ANY);
-  }
 }
