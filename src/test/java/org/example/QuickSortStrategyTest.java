@@ -7,10 +7,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class QuickSortStrategyTest {
+public class QuickSortStrategyTest {
 
   @Test
-  void sort() {
+  public void sort() {
     final QuickSortStrategy strategy = new QuickSortStrategy();
     final List<Integer> list = new ArrayList<>();
     list.add(1);
@@ -19,5 +19,11 @@ class QuickSortStrategyTest {
     list.add(-4);
     list.add(5);
     assertEquals(List.of(-4, -2, 1, 3, 5), strategy.sort(list));
+  }
+
+  @Test
+  public void sortingType() {
+    final QuickSortStrategy strategy = new QuickSortStrategy();
+    assertEquals(strategy.sortingType(), SortingType.QUICK);
   }
 }

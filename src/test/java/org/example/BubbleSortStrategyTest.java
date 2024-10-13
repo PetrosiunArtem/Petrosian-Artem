@@ -7,9 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BubbleSortStrategyTest {
+public class BubbleSortStrategyTest {
   @Test
-  void sort() {
+  public void sort() {
     final BubbleSortStrategy strategy = new BubbleSortStrategy();
     final List<Integer> list = new ArrayList<>();
     list.add(453);
@@ -21,9 +21,15 @@ class BubbleSortStrategyTest {
   }
 
   @Test
-  void sortEmptyList() {
+  public void sortEmptyList() {
     final BubbleSortStrategy strategy = new BubbleSortStrategy();
     final List<Integer> list = new ArrayList<>();
     assertEquals(list, strategy.sort(list));
+  }
+
+  @Test
+  public void sortingType() {
+    final BubbleSortStrategy strategy = new BubbleSortStrategy();
+    assertEquals(strategy.sortingType(), SortingType.BUBBLE);
   }
 }
