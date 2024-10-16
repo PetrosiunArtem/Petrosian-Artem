@@ -7,17 +7,19 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    List<Integer> list = readList(scanner);
+
     final SortingManager manager = new SortingManager();
 
     manager.addSortingStrategy(new BubbleSortStrategy());
     manager.addSortingStrategy(new QuickSortStrategy());
 
+    List<Integer> list = readList(scanner);
     SortingType type = choiceSortingTypes(scanner);
-    List<Integer> listCopy = manager.sort(list, type);
+    ListCopyWrapper listCopy = new ListCopyWrapper(list);
+    manager.sort(listCopy, type);
     System.out.println("Отсортированный list:");
-    for (Integer value : listCopy) {
-      System.out.print(value + " ");
+    for (int i = 0; i < listCopy.size(); i++) {
+      System.out.print(listCopy.get(i) + " ");
     }
   }
 

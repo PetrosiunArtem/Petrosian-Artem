@@ -18,7 +18,8 @@ public class QuickSortStrategyTest {
     list.add(3);
     list.add(-4);
     list.add(5);
-    assertEquals(List.of(-4, -2, 1, 3, 5), strategy.sort(list));
+    final ListCopyWrapper listCopy = new ListCopyWrapper(list);
+    assertEquals(List.of(-4, -2, 1, 3, 5), strategy.sort(listCopy).getList());
   }
 
   @Test

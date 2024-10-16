@@ -1,15 +1,16 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class QuickSortStrategy implements SortingStrategy {
 
-  public static void quickSort(List<Integer> list) {
+  public static void quickSort(ListCopyWrapper list) {
+    if (list.size() > (int) 1e7) {
+      throw new RuntimeException(
+          "Кол-во элементов list превысило 10^7, что время работы Quick sort будет не в рамках ТЗ");
+    }
     quickSort(list, 0, list.size() - 1);
   }
 
-  public static void quickSort(List<Integer> list, int low, int high) {
+  public static void quickSort(ListCopyWrapper list, int low, int high) {
     if (low >= high) {
       return;
     }
@@ -18,7 +19,7 @@ public class QuickSortStrategy implements SortingStrategy {
     quickSort(list, id, high);
   }
 
-  public static int divide(List<Integer> list, int low, int high) {
+  public static int divide(ListCopyWrapper list, int low, int high) {
     int mid = low + (high - low) / 2;
     int pivot = list.get(mid);
     int left = low;
@@ -45,8 +46,7 @@ public class QuickSortStrategy implements SortingStrategy {
   }
 
   @Override
-  public List<Integer> sort(List<Integer> list) {
-    List<Integer> listCopy = new ArrayList<>(list);
+  public ListCopyWrapper sort(ListCopyWrapper listCopy) {
     quickSort(listCopy);
     return listCopy;
   }

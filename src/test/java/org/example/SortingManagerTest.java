@@ -17,6 +17,7 @@ class SortingManagerTest {
     list.add(-3);
     list.add(2121212);
     list.add(-5454);
-    assertEquals(manager.sort(list, SortingType.BUBBLE), List.of(-5454, -3, 2121212));
+    final ListCopyWrapper listCopy = new ListCopyWrapper(list);
+    assertEquals(manager.sort(listCopy, SortingType.BUBBLE).getList(), List.of(-5454, -3, 2121212));
   }
 }

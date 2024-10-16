@@ -1,9 +1,7 @@
 package org.example;
 
-import java.util.List;
-
 public interface SortingStrategy {
-  List<Integer> sort(List<Integer> array);
+  ListCopyWrapper sort(ListCopyWrapper array);
 
   SortingType sortingType();
 }

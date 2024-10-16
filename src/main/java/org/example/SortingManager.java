@@ -12,14 +12,14 @@ public class SortingManager {
     this.sorts.add(sort);
   }
 
-  public List<Integer> sort(List<Integer> list, SortingType type) {
+  public ListCopyWrapper sort(ListCopyWrapper list, SortingType type) {
     RuntimeException SortingTypeException = null;
     for (SortingStrategy strategy : this.sorts) {
       if (type != SortingType.ANY && strategy.sortingType() != type) {
         continue;
       }
       try {
-        return strategy.sort(List.copyOf(list));
+        return strategy.sort(list);
       } catch (RuntimeException exception) {
         SortingTypeException = exception;
       }
