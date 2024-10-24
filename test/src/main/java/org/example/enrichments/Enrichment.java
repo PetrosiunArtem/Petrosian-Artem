@@ -1,6 +1,5 @@
-package org.example;
+package org.example.enrichments;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public interface Enrichment {

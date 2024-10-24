@@ -1,4 +1,6 @@
-package org.example;
+package org.example.enrichments;
+
+import org.example.Message;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,12 +15,18 @@ public class EnrichmentService {
   }
 
   public Message enrich(Message message) {
-    Enrichment enrichment = enrichments.get(message.enrichmentType());
+    if (message == null) {
+      return message;
+    }
+    Map<String, String> messageContent = message.getContent();
+    EnrichmentType messageType = message.getEnrichmentType();
+
+    Enrichment enrichment = enrichments.get(messageType);
     if (enrichment == null) {
       return message;
     }
-    Map<String, String> newContent = enrichment.enrich(new ConcurrentHashMap<>(message.content()));
-    Message newMessage = new Message(newContent, message.enrichmentType());
-    return newMessage;
+    Map<String, String> newContent = enrichment.enrich(new ConcurrentHashMap<>(messageContent));
+    message.setContent(newContent);
+    return message;
   }
 }
