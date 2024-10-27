@@ -85,8 +85,8 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
-                            <dataFile>target/jacoco.exec</dataFile>
-                            <outputDirectory>target/jacoco-ut</outputDirectory>
+                            <dataFile>test/target/jacoco.exec</dataFile>
+                            <outputDirectory>test/target/jacoco-ut</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
