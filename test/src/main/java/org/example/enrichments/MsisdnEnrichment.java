@@ -6,7 +6,7 @@ import org.example.users.UserRepository;
 import java.util.Map;
 
 public class MsisdnEnrichment implements Enrichment {
-  final String enrichType = EnrichmentType.MSISDN.toString().toLowerCase();
+  private final String enrichType = EnrichmentType.MSISDN.toString().toLowerCase();
   private final UserRepository repository;
 
   public MsisdnEnrichment(UserRepository repository) {

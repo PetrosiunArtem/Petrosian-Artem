@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Message {
   private Map<String, String> content;
-  private EnrichmentType enrichmentType;
+  private final EnrichmentType enrichmentType;
 
   public Message(Map<String, String> content, EnrichmentType enrichmentType) {
     this.content = content;

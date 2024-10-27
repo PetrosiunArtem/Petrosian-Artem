@@ -15,4 +15,8 @@ public class ConcurrencyHashMapUserRepository implements UserRepository {
   public void updateUserByMsisdn(String msisdn, User user) {
     this.hashMap.put(msisdn, user);
   }
+
+  public ConcurrentHashMap<String, User> getHashMap() {
+    return this.hashMap;
+  }
 }
