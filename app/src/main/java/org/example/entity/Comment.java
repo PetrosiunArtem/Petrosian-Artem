@@ -16,10 +16,6 @@ public class Comment {
     this.text = text;
   }
 
-  public Comment withText(String newText) {
-    return new Comment(id, articleId, newText);
-  }
-
   public CommentId getId() {
     return id;
   }
@@ -38,14 +34,14 @@ public class Comment {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object obj) {
+    if (this == obj) {
       return true;
     }
-    if (o == null || getClass() != o.getClass()) {
+    if (obj == null || getClass() != obj.getClass()) {
       return false;
     }
-    Comment comment = (Comment) o;
+    Comment comment = (Comment) obj;
     return id.equals(comment.id);
   }
 

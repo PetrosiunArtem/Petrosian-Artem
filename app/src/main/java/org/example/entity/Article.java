@@ -1,6 +1,6 @@
 package org.example.entity;
 
-import org.example.CommentId;
+import org.example.ArticleId;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,12 +8,12 @@ import java.util.Set;
 
 public class Article {
 
-  private final CommentId id;
+  private final ArticleId id;
   private final String name;
   private final Set<String> tags;
   private final List<Comment> comments;
 
-  public Article(CommentId id, String name, Set<String> tags, List<Comment> comments) {
+  public Article(ArticleId id, String name, Set<String> tags, List<Comment> comments) {
     this.id = id;
     this.name = name;
     this.tags = tags;
@@ -32,7 +32,7 @@ public class Article {
     return new Article(id, name, tags, newComments);
   }
 
-  public CommentId getId() {
+  public ArticleId getId() {
     return id;
   }
 

@@ -26,6 +26,10 @@ public class ArticleId {
     return id == articleId.id;
   }
 
+  public long getId() {
+    return id;
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id);

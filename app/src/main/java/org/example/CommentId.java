@@ -11,7 +11,7 @@ public class CommentId {
 
   @Override
   public String toString() {
-    return "ArticleId{" + "id=" + id + '\'' + '}';
+    return "CommentId{" + "id=" + id + '\'' + '}';
   }
 
   @Override
@@ -24,6 +24,10 @@ public class CommentId {
     }
     CommentId commentId = (CommentId) obj;
     return id == commentId.id;
+  }
+
+  public long getId() {
+    return id;
   }
 
   @Override
