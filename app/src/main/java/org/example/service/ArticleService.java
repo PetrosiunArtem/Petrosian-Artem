@@ -47,7 +47,7 @@ public class ArticleService {
   }
 
   public void update(ArticleId articleId, String name, Set<String> tags, List<Comment> comments) {
-    Article article = null;
+    Article article;
     try {
       article = articleRepository.findById(articleId);
     } catch (ArticleNotFoundException e) {
