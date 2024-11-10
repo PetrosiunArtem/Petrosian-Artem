@@ -11,7 +11,9 @@ import org.example.repository.exception.ArticleNotFoundException;
 import org.example.service.ArticleService;
 import org.example.service.exception.ArticleCreateException;
 
+import org.example.service.exception.ArticleDeleteException;
 import org.example.service.exception.ArticleFindException;
+import org.example.service.exception.ArticleUpdateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +39,10 @@ public class ArticleController implements Controller {
   @Override
   public void initializeEndpoints() {
     createArticle();
+    getArticle();
+    updateArticle();
+    deleteArticle();
+    findAllArticle();
   }
 
   private void createArticle() {
@@ -99,7 +105,7 @@ public class ArticleController implements Controller {
                 articleUpdateRequest.comments());
             response.status(200);
             return objectMapper.writeValueAsString(new ArticleUpdateResponse());
-          } catch (ArticleFindException e) {
+          } catch (ArticleUpdateException e) {
             LOG.warn("Cannot find article", e);
             response.status(404);
             return objectMapper.writeValueAsString(new ErrorResponse(e.getMessage()));
@@ -119,7 +125,7 @@ public class ArticleController implements Controller {
             articleService.delete(articleDeleteRequest.articleId());
             response.status(200);
             return objectMapper.writeValueAsString(new ArticleDeleteResponse());
-          } catch (ArticleFindException e) {
+          } catch (ArticleDeleteException e) {
             LOG.warn("Cannot find article", e);
             response.status(404);
             return objectMapper.writeValueAsString(new ErrorResponse(e.getMessage()));
