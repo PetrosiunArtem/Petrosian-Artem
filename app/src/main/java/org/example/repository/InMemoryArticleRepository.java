@@ -1,6 +1,6 @@
 package org.example.repository;
 
-import org.example.ArticleId;
+import org.example.entity.ArticleId;
 import org.example.entity.Article;
 
 import org.example.repository.exception.ArticleIdDuplicatedException;

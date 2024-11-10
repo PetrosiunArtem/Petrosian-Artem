@@ -1,8 +1,5 @@
 package org.example.entity;
 
-import org.example.ArticleId;
-import org.example.CommentId;
-
 import java.util.Objects;
 
 public class Comment {

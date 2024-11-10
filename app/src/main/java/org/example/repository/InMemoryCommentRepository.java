@@ -1,6 +1,6 @@
 package org.example.repository;
 
-import org.example.CommentId;
+import org.example.entity.CommentId;
 import org.example.entity.Comment;
 
 import org.example.repository.exception.CommentIdDuplicatedException;

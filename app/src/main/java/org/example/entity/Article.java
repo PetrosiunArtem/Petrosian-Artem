@@ -1,7 +1,5 @@
 package org.example.entity;
 
-import org.example.ArticleId;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
