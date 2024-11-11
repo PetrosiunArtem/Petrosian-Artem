@@ -7,7 +7,6 @@ import org.example.controller.response.*;
 
 import org.example.entity.Article;
 import org.example.entity.ArticleId;
-import org.example.repository.exception.ArticleNotFoundException;
 import org.example.service.ArticleService;
 import org.example.service.exception.ArticleCreateException;
 

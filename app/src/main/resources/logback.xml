@@ -13,6 +13,4 @@
         <appender-ref ref="CONSOLE"/>
     </root>
 
-    <logger name="org.example.Calculator" level="DEBUG"/>
-
 </configuration>

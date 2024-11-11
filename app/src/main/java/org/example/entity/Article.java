@@ -38,8 +38,8 @@ public class Article {
     return name;
   }
 
-  public Set<String> getTags() {
-    return tags;
+  public String getTags() {
+    return tags.toString();
   }
 
   public List<Comment> getComments() {

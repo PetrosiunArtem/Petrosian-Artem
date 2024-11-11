@@ -24,8 +24,7 @@ public class CommentService {
 
   public CommentService(
       CommentRepository commentRepository,
-      ArticleRepository articleRepository,
-      ArticleService articleService) {
+      ArticleRepository articleRepository) {
     this.commentRepository = commentRepository;
     this.articleRepository = articleRepository;
   }
