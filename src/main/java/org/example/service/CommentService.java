@@ -16,15 +16,14 @@ import org.example.service.exception.ArticleFindException;
 import org.example.service.exception.CommentCreateException;
 import org.example.service.exception.CommentDeleteException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentService {
   private final CommentRepository commentRepository;
   private final ArticleRepository articleRepository;
 
-  public CommentService(
-      CommentRepository commentRepository,
-      ArticleRepository articleRepository) {
+  public CommentService(CommentRepository commentRepository, ArticleRepository articleRepository) {
     this.commentRepository = commentRepository;
     this.articleRepository = articleRepository;
   }
@@ -40,8 +39,11 @@ public class CommentService {
     try {
       Article article = articleRepository.findById(articleId);
       List<Comment> comments = article.getComments();
+      if (comments == null) {
+        comments = new ArrayList<>();
+      }
       comments.add(comment);
-      article.withComments(comments);
+      article = article.withComments(comments);
       articleRepository.update(article);
     } catch (ArticleNotFoundException e) {
       throw new ArticleFindException("Cannot find article", e);

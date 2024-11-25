@@ -35,9 +35,9 @@ public class ArticleService {
     }
   }
 
-  public ArticleId create(String name, Set<String> tags, List<Comment> comments) {
+  public ArticleId create(String name, Set<String> tags) {
     ArticleId articleId = articleRepository.generateId();
-    Article article = new Article(articleId, name, tags, comments);
+    Article article = new Article(articleId, name, tags, null);
     try {
       articleRepository.create(article);
     } catch (ArticleIdDuplicatedException e) {

@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.example.controller.request.CommentCreateRequest;
 import org.example.controller.request.CommentDeleteRequest;
-import org.example.controller.response.*;
+import org.example.controller.response.ErrorResponse;
+import org.example.controller.response.CommentCreateResponse;
+import org.example.controller.response.CommentDeleteResponse;
 
 import org.example.entity.CommentId;
 
@@ -52,6 +54,7 @@ public class CommentController implements Controller {
                 commentService.create(
                     commentCreateRequest.articleId(), commentCreateRequest.text());
             response.status(201);
+            LOG.debug("Comment created");
             return objectMapper.writeValueAsString(new CommentCreateResponse(commentId));
           } catch (CommentCreateException e) {
             LOG.warn("Cannot create comment", e);
@@ -63,15 +66,15 @@ public class CommentController implements Controller {
 
   private void deleteComment() {
     service.delete(
-        "/api/comments",
+        "/api/comments/:commentId",
         (Request request, Response response) -> {
           response.type("application/json");
-          String body = request.body();
-          CommentDeleteRequest commentDeleteRequest =
-              objectMapper.readValue(body, CommentDeleteRequest.class);
+          CommentId commentId = new CommentId(Long.parseLong(request.params("commentId")));
+          CommentDeleteRequest commentDeleteRequest = new CommentDeleteRequest(commentId);
           try {
             commentService.delete(commentDeleteRequest.commentId());
             response.status(200);
+            LOG.debug("Comment deleted");
             return objectMapper.writeValueAsString(new CommentDeleteResponse());
           } catch (CommentDeleteException e) {
             LOG.warn("Cannot find comment", e);

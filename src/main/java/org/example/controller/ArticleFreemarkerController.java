@@ -8,11 +8,16 @@ import spark.Response;
 import spark.Service;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ArticleFreemarkerController implements Controller {
+
+  private static final Logger LOG = LoggerFactory.getLogger(ArticleFreemarkerController.class);
 
   private final Service service;
   private final ArticleService articleService;
@@ -48,6 +53,7 @@ public class ArticleFreemarkerController implements Controller {
 
           Map<String, Object> model = new HashMap<>();
           model.put("articles", articleMapList);
+          LOG.debug("Articles showed");
           return freeMarkerEngine.render(new ModelAndView(model, "index.ftl"));
         });
   }

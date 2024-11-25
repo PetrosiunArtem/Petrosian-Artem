@@ -19,7 +19,6 @@ public class Main {
   public static void main(String[] args) {
     Service service = Service.ignite();
     ObjectMapper objectMapper = new ObjectMapper();
-
     ArticleRepository articleRepository = new InMemoryArticleRepository();
     CommentRepository commentRepository = new InMemoryCommentRepository();
 
