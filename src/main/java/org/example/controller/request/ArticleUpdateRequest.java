@@ -7,4 +7,4 @@ import org.example.entity.ArticleId;
 import org.example.entity.Comment;
 
 public record ArticleUpdateRequest(
-    ArticleId articleId, String name, Set<String> tags, List<Comment> comments) {}
+    ArticleId articleId, String name, Set<String> tags, List<Comment> comments, boolean trending) {}

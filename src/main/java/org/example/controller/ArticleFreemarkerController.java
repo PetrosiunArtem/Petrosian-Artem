@@ -48,7 +48,8 @@ public class ArticleFreemarkerController implements Controller {
                           Map.of(
                               "name", article.getName(),
                               "tags", article.getTags(),
-                              "comments", Integer.toString(article.getComments().size())))
+                              "comments", Integer.toString(article.getComments().size()),
+                              "trending", Boolean.toString(article.getTrending())))
                   .toList();
 
           Map<String, Object> model = new HashMap<>();

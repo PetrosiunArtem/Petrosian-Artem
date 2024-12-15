@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.example.controller.request.ArticleCreateRequest;
@@ -8,9 +9,10 @@ import org.example.controller.request.ArticleFindAllRequest;
 import org.example.controller.request.ArticleUpdateRequest;
 import org.example.controller.request.ArticleFindByIdRequest;
 
-import org.example.controller.response.ArticleDeleteResponse;
-import org.example.controller.response.ErrorResponse;
 import org.example.controller.response.ArticleUpdateResponse;
+import org.example.controller.response.ArticlesCreateResponse;
+import org.example.controller.response.ErrorResponse;
+import org.example.controller.response.ArticleDeleteResponse;
 import org.example.controller.response.ArticleFindByIdResponse;
 
 import org.example.entity.Article;
@@ -28,9 +30,7 @@ import spark.Request;
 import spark.Response;
 import spark.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ArticleController implements Controller {
 
@@ -50,6 +50,7 @@ public class ArticleController implements Controller {
   @Override
   public void initializeEndpoints() {
     createArticle();
+    createArticles();
     getArticle();
     updateArticle();
     deleteArticle();
@@ -112,7 +113,8 @@ public class ArticleController implements Controller {
                 articleId,
                 articleUpdateRequest.name(),
                 articleUpdateRequest.tags(),
-                articleUpdateRequest.comments());
+                articleUpdateRequest.comments(),
+                articleUpdateRequest.trending());
             LOG.debug("Article updated");
             response.status(200);
             return objectMapper.writeValueAsString(new ArticleUpdateResponse());
@@ -176,6 +178,38 @@ public class ArticleController implements Controller {
             response.status(404);
             return objectMapper.writeValueAsString(new ErrorResponse(e.getMessage()));
           }
+        });
+  }
+
+  private void createArticles() {
+    service.post(
+        "api/articles",
+        (Request request, Response response) -> {
+          response.type("application/json");
+          String body = request.body();
+          List<ArticleCreateRequest> articlesRequest;
+
+          try {
+            articlesRequest =
+                Arrays.asList(objectMapper.readValue(body, ArticleCreateRequest[].class));
+          } catch (JsonProcessingException e) {
+            LOG.warn(e.getMessage());
+            response.status(400);
+            return objectMapper.writeValueAsString(new ErrorResponse(e.getMessage()));
+          }
+
+          List<Article> articles = new ArrayList<>();
+
+          for (ArticleCreateRequest article : articlesRequest) {
+            articles.add(
+                new Article(
+                    articleService.generateId(), article.name(), article.tags(), null, false));
+          }
+          articleService.createArticles(articles);
+          LOG.debug("Successfully created articles");
+          response.status(200);
+          return objectMapper.writeValueAsString(
+              new ArticlesCreateResponse(articles.stream().map(Article::getId).toList()));
         });
   }
 }

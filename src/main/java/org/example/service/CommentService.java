@@ -41,7 +41,7 @@ public class CommentService {
       List<Comment> comments = article.getComments();
       comments.add(comment);
       article = article.withComments(comments);
-      if (!article.trending() && comments.size() >= 3) {
+      if (!article.trending() && comments.size() > 3) {
         article = article.withTrending(true);
       }
       articleRepository.update(article);
@@ -64,7 +64,7 @@ public class CommentService {
       List<Comment> comments = article.getComments();
       comments.remove(comment);
       article = article.withComments(comments);
-      if (article.trending() && comments.size() < 3) {
+      if (article.trending() && comments.size() <= 3) {
         article = article.withTrending(false);
       }
       articleRepository.update(article);
