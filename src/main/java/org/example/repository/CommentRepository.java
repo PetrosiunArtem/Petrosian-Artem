@@ -6,7 +6,11 @@ import org.example.entity.Comment;
 public interface CommentRepository {
   CommentId generateId();
 
-  void create(Comment comment);
+  CommentId create(Comment comment);
 
   void delete(CommentId commentId);
+
+  Comment findById(CommentId commentId);
+
+  void update(Comment comment);
 }

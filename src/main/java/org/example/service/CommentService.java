@@ -15,8 +15,8 @@ import org.example.repository.exception.CommentNotFoundException;
 import org.example.service.exception.ArticleFindException;
 import org.example.service.exception.CommentCreateException;
 import org.example.service.exception.CommentDeleteException;
+import org.example.service.exception.CommentFindException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommentService {
@@ -39,11 +39,11 @@ public class CommentService {
     try {
       Article article = articleRepository.findById(articleId);
       List<Comment> comments = article.getComments();
-      if (comments == null) {
-        comments = new ArrayList<>();
-      }
       comments.add(comment);
       article = article.withComments(comments);
+      if (!article.trending() && comments.size() >= 3) {
+        article = article.withTrending(true);
+      }
       articleRepository.update(article);
     } catch (ArticleNotFoundException e) {
       throw new ArticleFindException("Cannot find article", e);
@@ -52,6 +52,26 @@ public class CommentService {
   }
 
   public void delete(CommentId commentId) {
+    Comment comment;
+    try {
+      comment = commentRepository.findById(commentId);
+    } catch (CommentNotFoundException e) {
+      throw new CommentFindException("Cannot find comment", e);
+    }
+
+    try {
+      Article article = articleRepository.findById(comment.articleId());
+      List<Comment> comments = article.getComments();
+      comments.remove(comment);
+      article = article.withComments(comments);
+      if (article.trending() && comments.size() < 3) {
+        article = article.withTrending(false);
+      }
+      articleRepository.update(article);
+    } catch (ArticleNotFoundException e) {
+      throw new ArticleFindException("Cannot find article", e);
+    }
+
     try {
       commentRepository.delete(commentId);
     } catch (CommentNotFoundException e) {

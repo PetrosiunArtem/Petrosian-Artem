@@ -19,8 +19,6 @@ public enum SqlQueries {
 
   UPDATECOMENT("UPDATE comment SET text = :text WHERE comment_id = :comment_id"),
 
-  FINDCOMMENTTEXT("SELECT * FROM comment AS text WHERE comment_id = :comment_id"),
-
   UPDATEARTICLE(
       "UPDATE article SET title = :title, tags = :tags, comments = :comments, trending = :trending WHERE article_id = :article_id"),
 

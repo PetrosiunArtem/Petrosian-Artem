@@ -111,7 +111,7 @@ public class InMemoryArticleRepository implements ArticleRepository {
       try (Update update = handle.createUpdate(CREATEARTICLE.getString())) {
         articleId =
             new ArticleId(
-                (Long)
+                (long)
                     update
                         .bind("article_id", article.getId().id())
                         .bind("name", article.getName())
