@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.TransactionManager;
+import org.example.manager.TransactionManager;
 import org.example.entity.Article;
 import org.example.entity.ArticleId;
 import org.example.entity.Comment;
@@ -23,7 +23,7 @@ import org.jdbi.v3.core.transaction.TransactionIsolationLevel;
 import java.util.List;
 import java.util.Set;
 
-public class ArticleService {
+public class ArticleService implements ServiceForArticle {
   private final ArticleRepository articleRepository;
   private final CommentRepository commentRepository;
   private final TransactionManager transactionManager;
@@ -64,7 +64,7 @@ public class ArticleService {
     return articleId;
   }
 
-  public void update(
+  public ArticleId update(
       ArticleId articleId,
       String name,
       Set<String> tags,
@@ -92,6 +92,7 @@ public class ArticleService {
                 "Cannot update article with id = " + article.getId(), e);
           }
         });
+    return articleId;
   }
 
   public void delete(ArticleId articleId) {

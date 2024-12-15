@@ -1,11 +1,11 @@
-package org.example;
+package org.example.manager;
 
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.transaction.TransactionIsolationLevel;
 import java.util.function.Supplier;
 
-public class JdbiTransactionManager {
+public class JdbiTransactionManager implements TransactionManager {
   private final Jdbi jdbi;
 
   public JdbiTransactionManager(Jdbi jdbi) {

@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.entity.Article;
-import org.example.service.ArticleService;
+import org.example.service.ServiceForArticle;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -20,11 +20,11 @@ public class ArticleFreemarkerController implements Controller {
   private static final Logger LOG = LoggerFactory.getLogger(ArticleFreemarkerController.class);
 
   private final Service service;
-  private final ArticleService articleService;
+  private final ServiceForArticle articleService;
   private final FreeMarkerEngine freeMarkerEngine;
 
   public ArticleFreemarkerController(
-      Service service, ArticleService articleService, FreeMarkerEngine freeMarkerEngine) {
+      Service service, ServiceForArticle articleService, FreeMarkerEngine freeMarkerEngine) {
     this.service = service;
     this.articleService = articleService;
     this.freeMarkerEngine = freeMarkerEngine;

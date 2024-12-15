@@ -1,4 +1,4 @@
-package org.example;
+package org.example.manager;
 
 import org.jdbi.v3.core.transaction.TransactionIsolationLevel;
 import java.util.function.Supplier;

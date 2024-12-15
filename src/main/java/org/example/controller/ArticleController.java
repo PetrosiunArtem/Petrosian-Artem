@@ -17,7 +17,7 @@ import org.example.controller.response.ArticleFindByIdResponse;
 
 import org.example.entity.Article;
 import org.example.entity.ArticleId;
-import org.example.service.ArticleService;
+import org.example.service.ServiceForArticle;
 import org.example.service.exception.ArticleCreateException;
 
 import org.example.service.exception.ArticleDeleteException;
@@ -37,11 +37,11 @@ public class ArticleController implements Controller {
   private static final Logger LOG = LoggerFactory.getLogger(ArticleController.class);
 
   private final Service service;
-  private final ArticleService articleService;
+  private final ServiceForArticle articleService;
   private final ObjectMapper objectMapper;
 
   public ArticleController(
-      Service service, ArticleService articleService, ObjectMapper objectMapper) {
+      Service service, ServiceForArticle articleService, ObjectMapper objectMapper) {
     this.service = service;
     this.articleService = articleService;
     this.objectMapper = objectMapper;
