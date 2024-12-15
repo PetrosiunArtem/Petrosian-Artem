@@ -12,7 +12,7 @@ public interface ArticleRepository {
 
   Article findById(ArticleId articleId);
 
-  void create(Article article);
+  ArticleId create(Article article);
 
   void update(Article article);
 
